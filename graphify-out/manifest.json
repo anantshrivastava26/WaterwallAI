@@ -1,6 +1,210 @@
 {
-  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\.graphify_input\\local_ai_context_graph_system_production_blueprint.md": {
-    "mtime": 1778187102.7052066,
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\ai\\budget.py": {
+    "mtime": 1778186939.2308323,
+    "hash": "459c22041ffbd30cfd18ebdaa5a85b42"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\ai\\lm_studio_client.py": {
+    "mtime": 1778186931.971775,
+    "hash": "637f4ee5cfb8dcb85c28e59bff114e78"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\ai\\summarizer.py": {
+    "mtime": 1778186947.1501586,
+    "hash": "5de5264f3f46305daf786ec4ac5de401"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\ai\\__init__.py": {
+    "mtime": 1778186926.0442712,
+    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\backend\\app\\config.py": {
+    "mtime": 1778186775.1335616,
+    "hash": "045579f466aa0c06075e8a075bf1b141"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\backend\\app\\main.py": {
+    "mtime": 1778188790.8292832,
+    "hash": "c103d1aa2be49ef66d9804b3002596f7"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\backend\\app\\__init__.py": {
+    "mtime": 1778186768.5445898,
+    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\backend\\app\\api\\health.py": {
+    "mtime": 1778186799.1124156,
+    "hash": "a4d5929f38180c0d2c65ce3a20ffdd2c"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\backend\\app\\api\\ingest.py": {
+    "mtime": 1778188781.1877153,
+    "hash": "e026e404b09a00e75678f2be389fbecf"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\backend\\app\\api\\search.py": {
+    "mtime": 1778186808.648515,
+    "hash": "e625885a5a0b3161ea69a1502f521032"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\backend\\app\\api\\summary.py": {
+    "mtime": 1778188817.9690163,
+    "hash": "c143f7435b3911186ff180bc5711fa3a"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\backend\\app\\api\\__init__.py": {
+    "mtime": 1778186784.224167,
+    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\backend\\app\\db\\models.py": {
+    "mtime": 1778188775.9444084,
+    "hash": "fdb44412597a572c8a73d09000577b2c"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\backend\\app\\db\\session.py": {
+    "mtime": 1778186821.172791,
+    "hash": "9904dbf434fe34b0a45f4770e7db6739"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\backend\\app\\db\\__init__.py": {
+    "mtime": 1778186816.3829894,
+    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\embeddings\\embedder.py": {
+    "mtime": 1778186887.2897189,
+    "hash": "467b506cdf97cf8f5105c12c1c3820c8"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\embeddings\\qdrant_store.py": {
+    "mtime": 1778186894.7028346,
+    "hash": "9436780c825d84a0e160606480f2ba75"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\embeddings\\__init__.py": {
+    "mtime": 1778186881.9843848,
+    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\graph\\edge_builder.py": {
+    "mtime": 1778186922.677831,
+    "hash": "dfc866aec6285b8acca927fb3a4b7d6d"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\graph\\neo4j_client.py": {
+    "mtime": 1778186914.5566597,
+    "hash": "53404e31e36e9a3cc088b93b78aba86c"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\graph\\schema.py": {
+    "mtime": 1778186908.337046,
+    "hash": "00bcc7da0097a0ce3201f4a3247b66f8"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\graph\\__init__.py": {
+    "mtime": 1778186900.5020802,
+    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\ingestion\\email_parser.py": {
+    "mtime": 1778186853.4143372,
+    "hash": "cbee925da6c974ea68a2ea84700e1de2"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\ingestion\\normalizer.py": {
+    "mtime": 1778186860.2279048,
+    "hash": "32703d8c11c75657cd1c4c93a9d39993"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\ingestion\\whatsapp_parser.py": {
+    "mtime": 1778186846.1790137,
+    "hash": "aca1b5b8c57c1f5c6e274f83d5f8bad2"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\ingestion\\__init__.py": {
+    "mtime": 1778186836.528918,
+    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\nlp\\extractors.py": {
+    "mtime": 1778186871.2275267,
+    "hash": "72ba678c15a70c51aab965d27b6de86f"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\nlp\\priority.py": {
+    "mtime": 1778186878.7873025,
+    "hash": "fdfc58c6bde22cccd531ead644595650"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\nlp\\__init__.py": {
+    "mtime": 1778186864.0066154,
+    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\scheduler\\jobs.py": {
+    "mtime": 1778186957.6456344,
+    "hash": "1094f63a690c5f279c452f02927300fa"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\scheduler\\__init__.py": {
+    "mtime": 1778186950.7804735,
+    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\scripts\\run_dev.ps1": {
+    "mtime": 1778186984.1363788,
+    "hash": "a634ef5b8e506d2f830a72b3ee0056dc"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\scripts\\setup.ps1": {
+    "mtime": 1778186980.3497975,
+    "hash": "05a664b3aacf00a518ed70dbcf12b6a4"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\scripts\\smoke_lm_studio.py": {
+    "mtime": 1778188793.17759,
+    "hash": "d424cbcb08beb716916d41f32ad2dd21"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\tests\\test_ingest_endpoint.py": {
+    "mtime": 1778188799.430935,
+    "hash": "50127e4d8746fced042dbe1588d81504"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\tests\\test_summary_cache.py": {
+    "mtime": 1778188807.0346968,
+    "hash": "4882c26dfea737fc28ce91a4aa33af10"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\tests\\test_whatsapp_parser.py": {
+    "mtime": 1778187000.4604938,
+    "hash": "a20374ec55fddde03e3a492909f1db9e"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\tests\\__init__.py": {
+    "mtime": 1778186994.0816693,
+    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\CLAUDE.md": {
+    "mtime": 1778187224.2267694,
+    "hash": "2ed67c68f28bc1ef95ac24167431d7e8"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\local_ai_context_graph_system_production_blueprint.md": {
+    "mtime": 1778186495.9017572,
     "hash": "59fce27cf017b06fd0183818e2ee2504"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\requirements.txt": {
+    "mtime": 1778186757.7495196,
+    "hash": "1fd14bb6ecfb440cfc5fd1db8ef6658c"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\docker\\docker-compose.yml": {
+    "mtime": 1778186967.8368866,
+    "hash": "2724735aa59eb2b4b2c5ba8dadf3eae7"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\docs\\CONFIGURATION.md": {
+    "mtime": 1778187779.046494,
+    "hash": "d1fb4520020eccbe93119d2da799034b"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\docs\\PLAN_OVERVIEW.md": {
+    "mtime": 1778187752.8810542,
+    "hash": "6a74facf51444bdcbf0f62737faebbfb"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\docs\\PLAN_PHASE_01_FOUNDATION.md": {
+    "mtime": 1778187809.6498036,
+    "hash": "f69a1a6619cb1425fefcaf8541f48575"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\docs\\PLAN_PHASE_02_SEMANTIC.md": {
+    "mtime": 1778187842.5561018,
+    "hash": "71aaa1c9f83095e8458b811bacec5815"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\docs\\PLAN_PHASE_03_GRAPH.md": {
+    "mtime": 1778187880.169791,
+    "hash": "99db810035c05f3fa6d98dd87c26d1b5"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\docs\\PLAN_PHASE_04_INTELLIGENCE.md": {
+    "mtime": 1778187924.2432168,
+    "hash": "ef71094dd5482ec201f511d6d43db686"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\docs\\PLAN_PHASE_05_FRONTEND.md": {
+    "mtime": 1778187957.524329,
+    "hash": "99181918bc096b3f0bf057e31d56ea42"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\docs\\PLAN_PHASE_06_HARDENING.md": {
+    "mtime": 1778188002.1670609,
+    "hash": "4fc588e3c321acb9bbae0cb5111a4f59"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\graph_output\\blueprint_context\\graph.html": {
+    "mtime": 1778187520.8923745,
+    "hash": "03d20fbe3df42d62723e222b3a6b1be2"
+  },
+  "C:\\Users\\Asus\\Documents\\GitHub\\WaterwallAI\\graph_output\\blueprint_context\\GRAPH_REPORT.md": {
+    "mtime": 1778187520.8093376,
+    "hash": "4866bbc7f3a3df52295e1c6ca943ea7b"
   }
 }

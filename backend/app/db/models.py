@@ -1,6 +1,6 @@
-from datetime import datetime
+from datetime import date, datetime
 
-from sqlalchemy import JSON, DateTime, Float, String, Text
+from sqlalchemy import JSON, Date, DateTime, Float, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from .session import Base
@@ -20,3 +20,12 @@ class Message(Base):
     entities: Mapped[list] = mapped_column(JSON, default=list)
     sentiment: Mapped[str | None] = mapped_column(String, nullable=True)
     summary: Mapped[str | None] = mapped_column(Text, nullable=True)
+
+
+class DailySummary(Base):
+    __tablename__ = "daily_summaries"
+
+    day: Mapped[date] = mapped_column(Date, primary_key=True)
+    body: Mapped[str] = mapped_column(Text)
+    model: Mapped[str] = mapped_column(String)
+    generated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
