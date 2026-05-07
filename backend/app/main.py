@@ -4,7 +4,7 @@ from uuid import uuid4
 
 from fastapi import FastAPI, Request
 
-from .api import health, ingest, search, summary
+from .api import graphify, health, ingest, search, summary
 from .config import settings
 from .db import models as _models
 from .db.session import Base, engine
@@ -36,6 +36,7 @@ app.include_router(health.router)
 app.include_router(ingest.router, prefix="/ingest", tags=["ingest"])
 app.include_router(search.router, prefix="/search", tags=["search"])
 app.include_router(summary.router, prefix="/summary", tags=["summary"])
+app.include_router(graphify.router, prefix="/graphify", tags=["graphify"])
 
 
 @app.get("/")

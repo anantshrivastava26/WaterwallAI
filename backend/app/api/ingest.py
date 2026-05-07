@@ -1,9 +1,10 @@
 from datetime import datetime
 
-from fastapi import APIRouter, HTTPException, UploadFile
+from fastapi import APIRouter, BackgroundTasks, HTTPException, UploadFile
 
 from backend.app.db.models import Message
 from backend.app.db.session import SessionLocal
+from backend.app.services.graphify_export import refresh as refresh_graph
 from ingestion.normalizer import to_message_dict
 from ingestion.whatsapp_parser import parse
 
@@ -11,7 +12,7 @@ router = APIRouter()
 
 
 @router.post("/whatsapp")
-async def ingest_whatsapp(file: UploadFile) -> dict:
+async def ingest_whatsapp(file: UploadFile, background_tasks: BackgroundTasks) -> dict:
     if not file.filename or not file.filename.lower().endswith(".txt"):
         raise HTTPException(status_code=400, detail="Only .txt WhatsApp exports are supported")
 
@@ -44,6 +45,9 @@ async def ingest_whatsapp(file: UploadFile) -> dict:
                 skipped += 1
 
         session.commit()
+
+    if inserted > 0:
+        background_tasks.add_task(refresh_graph)
 
     return {"inserted": inserted, "skipped": skipped}
 
