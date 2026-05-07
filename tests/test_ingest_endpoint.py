@@ -11,6 +11,9 @@ SAMPLE = """[12/03/2024, 14:32] Alice: hey, are we still on for tomorrow?
 multi-line continuation here
 [12/03/2024, 14:35] Alice: cool"""
 
+DUPLICATE_SAMPLE = """[12/03/2024, 14:32] Alice: same line
+[12/03/2024, 14:32] Alice: same line"""
+
 
 def _test_session_local(tmp_path):
     db_path = tmp_path / "test_ingest.sqlite"
@@ -51,3 +54,24 @@ def test_ingest_whatsapp_roundtrip_and_idempotent(monkeypatch, tmp_path):
         assert count == 3
         session.execute(delete(Message))
         session.commit()
+
+
+def test_ingest_whatsapp_skips_duplicates_in_single_upload(monkeypatch, tmp_path):
+    test_session_local = _test_session_local(tmp_path)
+
+    import backend.app.api.ingest as ingest_api
+
+    monkeypatch.setattr(ingest_api, "SessionLocal", test_session_local)
+
+    client = TestClient(app)
+
+    response = client.post(
+        "/ingest/whatsapp",
+        files={"file": ("chat.txt", DUPLICATE_SAMPLE.encode("utf-8"), "text/plain")},
+    )
+    assert response.status_code == 200
+    assert response.json() == {"inserted": 1, "skipped": 1}
+
+    with test_session_local() as session:
+        count = len(session.scalars(select(Message)).all())
+        assert count == 1

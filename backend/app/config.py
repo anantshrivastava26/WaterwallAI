@@ -9,7 +9,7 @@ class Settings(BaseSettings):
 
     sqlite_path: str = "./data/waterwall.sqlite"
 
-    lm_studio_base_url: str = "http://localhost:1234/v1"
+    lm_studio_base_url: str = "http://localhost:1234"
     lm_studio_api_key: str = "lm-studio"
     lm_studio_model: str = "qwen2.5-3b-instruct"
 

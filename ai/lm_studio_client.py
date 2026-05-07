@@ -1,13 +1,9 @@
-"""Thin LM Studio wrapper. LM Studio exposes an OpenAI-compatible API."""
+"""Thin LM Studio wrapper using the native v1 REST API (/api/v1/chat)."""
 from __future__ import annotations
 
-from openai import OpenAI
+import httpx
 
 from backend.app.config import settings
-
-
-def client() -> OpenAI:
-    return OpenAI(base_url=settings.lm_studio_base_url, api_key=settings.lm_studio_api_key)
 
 
 def chat(
@@ -17,13 +13,27 @@ def chat(
     temperature: float = 0.2,
     max_tokens: int = 512,
 ) -> str:
-    resp = client().chat.completions.create(
-        model=settings.lm_studio_model,
-        messages=[
-            {"role": "system", "content": system},
-            {"role": "user", "content": user},
-        ],
-        temperature=temperature,
-        max_tokens=max_tokens,
-    )
-    return resp.choices[0].message.content or ""
+    payload = {
+        "model": settings.lm_studio_model,
+        "input": user,
+        "system_prompt": system,
+        "temperature": temperature,
+        "max_output_tokens": max_tokens,
+        "stream": False,
+    }
+    headers = {"Content-Type": "application/json"}
+    if settings.lm_studio_api_key:
+        headers["Authorization"] = f"Bearer {settings.lm_studio_api_key}"
+
+    base = settings.lm_studio_base_url.rstrip("/")
+    with httpx.Client(timeout=120.0) as http:
+        response = http.post(f"{base}/api/v1/chat", json=payload, headers=headers)
+        response.raise_for_status()
+        data = response.json()
+
+    parts = [
+        item.get("content", "")
+        for item in data.get("output", [])
+        if item.get("type") == "message"
+    ]
+    return "\n".join(p for p in parts if p)

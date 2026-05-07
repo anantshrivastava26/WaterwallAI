@@ -1,16 +1,16 @@
 # Graph Report - WaterwallAI  (2026-05-08)
 
 ## Corpus Check
-- 49 files · ~17,329 words
+- 51 files · ~17,959 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 493 nodes · 529 edges · 56 communities (52 shown, 4 thin omitted)
-- Extraction: 92% EXTRACTED · 8% INFERRED · 0% AMBIGUOUS · INFERRED: 44 edges (avg confidence: 0.83)
+- 506 nodes · 544 edges · 57 communities (53 shown, 4 thin omitted)
+- Extraction: 92% EXTRACTED · 8% INFERRED · 0% AMBIGUOUS · INFERRED: 46 edges (avg confidence: 0.83)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `d41eb73f`
+- Built from commit: `6a5c4410`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -56,7 +56,8 @@
 - [[_COMMUNITY_Community 38|Community 38]]
 - [[_COMMUNITY_Community 39|Community 39]]
 - [[_COMMUNITY_Community 40|Community 40]]
-- [[_COMMUNITY_Community 42|Community 42]]
+- [[_COMMUNITY_Community 41|Community 41]]
+- [[_COMMUNITY_Community 43|Community 43]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `Embedding Layer` - 11 edges
@@ -73,25 +74,25 @@
 ## Surprising Connections (you probably didn't know these)
 - `test_parse_basic()` --calls--> `parse()`  [INFERRED]
   tests/test_whatsapp_parser.py → ingestion/whatsapp_parser.py
+- `test_parse_ignores_system_lines_and_parses_hyphen_format()` --calls--> `parse()`  [INFERRED]
+  tests/test_whatsapp_parser.py → ingestion/whatsapp_parser.py
 - `daily_summary()` --calls--> `summarize_clusters()`  [INFERRED]
   backend/app/api/summary.py → ai/summarizer.py
 - `ingest_whatsapp()` --calls--> `parse()`  [INFERRED]
   backend/app/api/ingest.py → ingestion/whatsapp_parser.py
 - `ingest_whatsapp()` --calls--> `to_message_dict()`  [INFERRED]
   backend/app/api/ingest.py → ingestion/normalizer.py
-- `test_daily_summary_is_cached()` --calls--> `Message`  [INFERRED]
-  tests/test_summary_cache.py → backend/app/db/models.py
 
 ## Hyperedges (group relationships)
 - **Data Sources participating in Ingestion** — blueprint_whatsapp, blueprint_email, blueprint_notes, blueprint_docs_pdfs, blueprint_ingestion_layer [EXTRACTED 1.00]
 - **Storage Architecture Backends** — blueprint_sqlite, blueprint_qdrant, blueprint_neo4j, blueprint_storage_layer [EXTRACTED 1.00]
 - **Phase-Wise Execution Plan** — blueprint_phase_1, blueprint_phase_2, blueprint_phase_3, blueprint_phase_4, blueprint_phase_5, blueprint_phase_6 [EXTRACTED 1.00]
 
-## Communities (56 total, 4 thin omitted)
+## Communities (57 total, 4 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.05
-Nodes (61): AI Budgeting System, AI Reasoning Layer, APScheduler, AsyncIO, Backend Stack, BGE-small, Cold Memory, Data Sources (+53 more)
+Nodes (64): AI Budgeting System, AI Reasoning Layer, APScheduler, AsyncIO, Backend Stack, BGE-small, Cold Memory, Data Sources (+56 more)
 
 ### Community 1 - "Community 1"
 Cohesion: 0.08
@@ -134,24 +135,24 @@ Cohesion: 0.14
 Nodes (9): AI budgeting (section 11). Gates LLM calls under a daily token budget., remaining(), TokenBudget, chat(), client(), Thin LM Studio wrapper. LM Studio exposes an OpenAI-compatible API., Daily/weekly summarization. Cluster-first, then LLM., summarize_clusters() (+1 more)
 
 ### Community 11 - "Community 11"
+Cohesion: 0.14
+Nodes (12): ingest_whatsapp(), make_id(), Normalize parser output to the unified Message entity (section 12)., to_message_dict(), parse(), _parse_ts(), ParsedMessage, Deterministic WhatsApp TXT export parser. No LLM. (+4 more)
+
+### Community 12 - "Community 12"
+Cohesion: 0.15
+Nodes (10): Settings, add_request_id(), Base, BaseSettings, DailySummary, Message, Base, DeclarativeBase (+2 more)
+
+### Community 13 - "Community 13"
 Cohesion: 0.12
 Nodes (16): 1. Prerequisites, 2. Python virtualenv, 3. spaCy model (P3), 4. LM Studio, 5. Docker services (Qdrant, Neo4j), 6. Environment variables, 7. Smoke test, 8. Troubleshooting (+8 more)
 
-### Community 12 - "Community 12"
+### Community 14 - "Community 14"
 Cohesion: 0.12
 Nodes (16): 1.1 Persist the schema, 1.2 Wire the WhatsApp ingest endpoint, 1.3 Daily summary endpoint, 1.4 Logging, 1.5 Smoke-test the LLM path, code:powershell (. .\.venv\Scripts\Activate.ps1), code:python (from ai.lm_studio_client import chat), Configuration changes (+8 more)
 
-### Community 13 - "Community 13"
-Cohesion: 0.16
-Nodes (10): Settings, add_request_id(), Base, BaseSettings, DailySummary, Message, Base, DeclarativeBase (+2 more)
-
-### Community 14 - "Community 14"
-Cohesion: 0.17
-Nodes (16): Epic: Relationship Graph, Final Product Vision, Graph-Driven Contextual Understanding, Graph Schema, 100% Local Execution, Local-Only Security, Neo4j, Node: Emotion (+8 more)
-
 ### Community 15 - "Community 15"
-Cohesion: 0.18
-Nodes (9): ingest_whatsapp(), make_id(), Normalize parser output to the unified Message entity (section 12)., to_message_dict(), parse(), _parse_ts(), ParsedMessage, Deterministic WhatsApp TXT export parser. No LLM. (+1 more)
+Cohesion: 0.21
+Nodes (13): Final Product Vision, Graph-Driven Contextual Understanding, Graph Schema, 100% Local Execution, Local-Only Security, Node: Emotion, Node: Event, Node: Person (+5 more)
 
 ### Community 16 - "Community 16"
 Cohesion: 0.23
@@ -170,36 +171,36 @@ Cohesion: 0.25
 Nodes (8): 8. Storage Architecture, Graph Database, Neo4j, PostgreSQL (Future Production), Qdrant, Relational Database, SQLite (Initial), Vector Database
 
 ### Community 20 - "Community 20"
-Cohesion: 0.29
-Nodes (6): 14. Priority Scoring Engine, Formula, Priority Signals, Project Relevance, Relationship Strength, Urgency Keywords
+Cohesion: 0.25
+Nodes (7): code:env (LM_STUDIO_BASE_URL=http://localhost:1234/v1), code:powershell (. .\.venv\Scripts\Activate.ps1), code:powershell (python scripts/phase1_import_and_summarize.py --chat-file "C), Inference endpoint comparison, Supported endpoints, WaterwallAI integration quickstart, What's new
 
 ### Community 21 - "Community 21"
 Cohesion: 0.29
-Nodes (6): Architectural invariants (every phase must respect), Cross-phase milestones, Decision log, Reading order, Scope discipline, WaterwallAI — Master Execution Plan
+Nodes (6): 14. Priority Scoring Engine, Formula, Priority Signals, Project Relevance, Relationship Strength, Urgency Keywords
 
 ### Community 22 - "Community 22"
+Cohesion: 0.29
+Nodes (6): Architectural invariants (every phase must respect), Cross-phase milestones, Decision log, Reading order, Scope discipline, WaterwallAI — Master Execution Plan
+
+### Community 23 - "Community 23"
 Cohesion: 0.53
 Nodes (5): client(), ensure_collection(), Qdrant client wrapper for semantic retrieval., search(), upsert()
 
-### Community 24 - "Community 24"
+### Community 25 - "Community 25"
 Cohesion: 0.33
 Nodes (6): 4. System Task Distribution, Infrastructure Tasks, Parsing and Ingestion, Recommended Technologies, System Intelligence, Tasks That MUST NOT Use the LLM
 
-### Community 25 - "Community 25"
+### Community 26 - "Community 26"
 Cohesion: 0.33
 Nodes (6): 7. Recommended Technology Stack, AI Runtime, Backend, Embedding Models, Fast Reasoning Models, Small Local Models
 
-### Community 26 - "Community 26"
+### Community 27 - "Community 27"
 Cohesion: 0.4
 Nodes (5): 23. Recommended Development Progression, Stage 1, Stage 2, Stage 3, Stage 4
 
-### Community 28 - "Community 28"
+### Community 29 - "Community 29"
 Cohesion: 0.67
 Nodes (3): embed(), _model(), Local embedding generation (section 7). Dedicated model, NOT the chat LLM.
-
-### Community 29 - "Community 29"
-Cohesion: 0.5
-Nodes (4): 9. Multi-Tier Memory Architecture, Cold Memory, Hot Memory, Warm Memory
 
 ### Community 30 - "Community 30"
 Cohesion: 0.5
@@ -207,15 +208,15 @@ Nodes (4): 17. Security Architecture, Authentication, Encryption, Local-Only Sec
 
 ### Community 31 - "Community 31"
 Cohesion: 0.5
-Nodes (4): 11. AI Budgeting System, code:python (DAILY_LLM_TOKEN_BUDGET = 50000), Example Configuration, Optimization Rules
+Nodes (4): 9. Multi-Tier Memory Architecture, Cold Memory, Hot Memory, Warm Memory
 
-### Community 33 - "Community 33"
-Cohesion: 0.67
-Nodes (3): 5. Tasks That SHOULD Use the LLM, Recommended Flow, Semantic Reasoning
+### Community 32 - "Community 32"
+Cohesion: 0.5
+Nodes (4): 11. AI Budgeting System, code:python (DAILY_LLM_TOKEN_BUDGET = 50000), Example Configuration, Optimization Rules
 
 ### Community 34 - "Community 34"
 Cohesion: 0.67
-Nodes (3): 12. Data Model, code:json ({), Message Entity
+Nodes (3): 10. Task Orchestrator Architecture, code:text (New Message), Pipeline Example
 
 ### Community 35 - "Community 35"
 Cohesion: 0.67
@@ -223,7 +224,7 @@ Nodes (3): 20. Observability, Logging, Metrics
 
 ### Community 36 - "Community 36"
 Cohesion: 0.67
-Nodes (3): 2. Core Product Principles, Important Constraint, Primary Principles
+Nodes (3): 18. Performance Optimization Strategy, Main Bottlenecks, Optimizations
 
 ### Community 37 - "Community 37"
 Cohesion: 0.67
@@ -231,18 +232,22 @@ Nodes (3): 24. Success Metrics, Technical, User Metrics
 
 ### Community 38 - "Community 38"
 Cohesion: 0.67
-Nodes (3): 10. Task Orchestrator Architecture, code:text (New Message), Pipeline Example
+Nodes (3): 19. Production Deployment, code:text (frontend), Docker Services
 
 ### Community 39 - "Community 39"
 Cohesion: 0.67
-Nodes (3): 18. Performance Optimization Strategy, Main Bottlenecks, Optimizations
+Nodes (3): 12. Data Model, code:json ({), Message Entity
 
 ### Community 40 - "Community 40"
 Cohesion: 0.67
-Nodes (3): 19. Production Deployment, code:text (frontend), Docker Services
+Nodes (3): 2. Core Product Principles, Important Constraint, Primary Principles
+
+### Community 41 - "Community 41"
+Cohesion: 0.67
+Nodes (3): 5. Tasks That SHOULD Use the LLM, Recommended Flow, Semantic Reasoning
 
 ## Knowledge Gaps
-- **235 isolated node(s):** `AI budgeting (section 11). Gates LLM calls under a daily token budget.`, `Thin LM Studio wrapper. LM Studio exposes an OpenAI-compatible API.`, `Daily/weekly summarization. Cluster-first, then LLM.`, `Local embedding generation (section 7). Dedicated model, NOT the chat LLM.`, `Qdrant client wrapper for semantic retrieval.` (+230 more)
+- **241 isolated node(s):** `AI budgeting (section 11). Gates LLM calls under a daily token budget.`, `Thin LM Studio wrapper. LM Studio exposes an OpenAI-compatible API.`, `Daily/weekly summarization. Cluster-first, then LLM.`, `Local embedding generation (section 7). Dedicated model, NOT the chat LLM.`, `Qdrant client wrapper for semantic retrieval.` (+236 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -250,11 +255,11 @@ Nodes (3): 19. Production Deployment, code:text (frontend), Docker Services
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `16. Phase-Wise Execution Plan` connect `Community 2` to `Community 17`?**
-  _High betweenness centrality (0.025) - this node is a cross-community bridge._
+  _High betweenness centrality (0.023) - this node is a cross-community bridge._
 - **Why does `15. User Stories` connect `Community 1` to `Community 17`?**
-  _High betweenness centrality (0.024) - this node is a cross-community bridge._
+  _High betweenness centrality (0.023) - this node is a cross-community bridge._
 - **What connects `AI budgeting (section 11). Gates LLM calls under a daily token budget.`, `Thin LM Studio wrapper. LM Studio exposes an OpenAI-compatible API.`, `Daily/weekly summarization. Cluster-first, then LLM.` to the rest of the system?**
-  _235 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _241 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.05 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**

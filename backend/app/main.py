@@ -1,12 +1,22 @@
 import logging
+from contextlib import asynccontextmanager
 from uuid import uuid4
 
 from fastapi import FastAPI, Request
 
 from .api import health, ingest, search, summary
 from .config import settings
+from .db import models as _models
+from .db.session import Base, engine
 
-app = FastAPI(title="WaterwallAI", version="0.1.0")
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    Base.metadata.create_all(engine)
+    yield
+
+
+app = FastAPI(title="WaterwallAI", version="0.1.0", lifespan=lifespan)
 
 logging.basicConfig(
     level=getattr(logging, settings.log_level.upper(), logging.INFO),
