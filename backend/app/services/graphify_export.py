@@ -8,6 +8,7 @@ which is gitignored, so nothing is published.
 from __future__ import annotations
 
 import logging
+import os
 import shutil
 import subprocess
 from collections import defaultdict
@@ -15,6 +16,7 @@ from pathlib import Path
 
 from sqlalchemy import select
 
+from backend.app.config import settings
 from backend.app.db.models import Message
 from backend.app.db.session import SessionLocal
 
@@ -55,11 +57,45 @@ def regenerate_inputs() -> dict:
 
 
 def run_graphify_extract() -> dict:
-    """Invoke ``graphify extract`` against the dumped corpus."""
+    """Invoke ``graphify extract`` against the dumped corpus.
+
+    Falls back to AST-only extraction if semantic extraction (LLM) is unavailable.
+    """
     GRAPH_DIR.mkdir(parents=True, exist_ok=True)
     binary = shutil.which("graphify") or "graphify"
-    cmd = [binary, "extract", str(GRAPH_DIR), "--out", str(GRAPH_DIR)]
-    log.info("graphify refresh: %s", " ".join(cmd))
+
+    env = os.environ.copy()
+
+    # Try semantic extraction with claude backend (requires ANTHROPIC_API_KEY)
+    if env.get("ANTHROPIC_API_KEY"):
+        cmd = [binary, "extract", str(GRAPH_DIR), "--out", str(GRAPH_DIR), "--backend", "claude"]
+        log.info("graphify refresh (semantic): %s", " ".join(cmd))
+        try:
+            proc = subprocess.run(
+                cmd,
+                cwd=PROJECT_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+                timeout=EXTRACT_TIMEOUT_SECONDS,
+                env=env,
+            )
+            if proc.returncode == 0:
+                return {
+                    "ok": True,
+                    "mode": "semantic",
+                    "returncode": proc.returncode,
+                    "stdout_tail": (proc.stdout or "")[-2000:],
+                    "graph_dir": str(GRAPH_OUT.relative_to(PROJECT_ROOT)),
+                }
+        except (FileNotFoundError, subprocess.TimeoutExpired):
+            pass
+
+    # Fallback to AST-only extraction (no LLM needed)
+    log.info("graphify refresh: falling back to AST-only mode")
+    cmd = [binary, "update", str(GRAPH_DIR), "--no-cluster"]
+    log.info("graphify refresh (ast-only): %s", " ".join(cmd))
+
     try:
         proc = subprocess.run(
             cmd,
@@ -68,6 +104,7 @@ def run_graphify_extract() -> dict:
             text=True,
             check=False,
             timeout=EXTRACT_TIMEOUT_SECONDS,
+            env=env,
         )
     except FileNotFoundError:
         return {"ok": False, "error": "graphify CLI not found on PATH"}
@@ -76,6 +113,7 @@ def run_graphify_extract() -> dict:
 
     return {
         "ok": proc.returncode == 0,
+        "mode": "ast-only",
         "returncode": proc.returncode,
         "stdout_tail": (proc.stdout or "")[-2000:],
         "stderr_tail": (proc.stderr or "")[-2000:],
