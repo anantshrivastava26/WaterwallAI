@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(python -c ' *)"
+      "Bash(python -c ' *)",
+      "Bash(python -m uvicorn backend.app.main:app --port 8000)",
+      "Bash(tee backend.log)"
     ]
   }
 }
