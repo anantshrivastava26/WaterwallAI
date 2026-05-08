@@ -43,3 +43,4 @@ logs/
 
 # Graphify outputs (regenerable)
 graph_output/
+graphify-out/
